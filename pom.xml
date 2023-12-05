@@ -3,7 +3,7 @@
   <modelVersion>4.0.0</modelVersion>
 
   <groupId>org.jvatechs</groupId>
-  <artifactId>Docx_text_parser</artifactId>
+  <artifactId>Small_utilities_compilation</artifactId>
   <version>1.0-SNAPSHOT</version>
   <packaging>jar</packaging>
 
