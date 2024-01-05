@@ -1,4 +1,4 @@
-package org.jvatechs.docx_parser_into_console;
+package org.jvatechs.wordDocx_parser_into_console;
 
 import org.apache.poi.xwpf.extractor.XWPFWordExtractor;
 import org.apache.poi.xwpf.usermodel.XWPFDocument;
