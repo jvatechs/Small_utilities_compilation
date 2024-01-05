@@ -55,7 +55,8 @@ public class DrawResultParser {
                 throw new DataFetchException("Error when receiving data for the draw " + drawId + ". Error code: " + response.statusCode());
             }
         } catch (HttpConnectTimeoutException e) {
-            throw new DataFetchException("Request timeout for draw: " + drawId, e);
+            LOGGER.log(Level.SEVERE, "Request timeout for draw: " + drawId);
+            throw new DataFetchException(drawId);
         } catch (IOException e) {
             LOGGER.severe("The http address isn't found.");
             throw new UnresolvedAddressException();

@@ -1,11 +1,11 @@
 package org.jvatechs.json_data_parser_from_html.exception;
 
 public class DataFetchException extends Exception {
-    private int statusCode;
+    private int drawNum;
 
-    public DataFetchException(int statusCode) {
-        super("Error when receiving data. Error code: " + statusCode);
-        this.statusCode = statusCode;
+    public DataFetchException(int drawNum) {
+        super("Error when receiving data. Draw number: " + drawNum);
+        this.drawNum = drawNum;
     }
 
     public DataFetchException(String message) {
@@ -16,7 +16,7 @@ public class DataFetchException extends Exception {
         super(message, cause);
     }
 
-    public int getStatusCode() {
-        return statusCode;
+    public int getDrawNum() {
+        return drawNum;
     }
 }
