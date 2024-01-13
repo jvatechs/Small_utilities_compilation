@@ -5,21 +5,27 @@ import org.apache.poi.xwpf.usermodel.XWPFDocument;
 
 import javax.swing.*;
 import javax.swing.filechooser.FileNameExtensionFilter;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.IOException;
+import java.io.*;
+
 public class DocxParser {
     private static final String INITIAL_DIRECTORY = "C:/Users/Owner/Downloads";
     private static final String FILTER_DESCRIPTION = "Word Documents (*.docx)";
     private static final String FILTER_EXTENSIONS = "docx";
 
+    private static final String DEST_FILENAME = "word-to-txt.txt";
+
     public static void main(String[] args) {
-        String text = new DocxParser().chooseFileAndReturnText();
-        System.out.println(text);
+//        String text = new DocxParser().chooseFileAndReturnText();
+//        new DocxParser().saveIntoTxt(text);
+
+        TextFormatter textFormatter = new TextFormatter();
+        String text = new DocxParser().readFromTxt();
+        textFormatter.CSVCreator(text);
+        textFormatter.saveResultIntoFile();
+
     }
 
-    private String chooseFileAndReturnText() {
+    protected String chooseFileAndReturnText() {
         JFileChooser fileChooser = new JFileChooser(INITIAL_DIRECTORY);
         applyFilters(fileChooser);
 
@@ -57,5 +63,27 @@ public class DocxParser {
         fileChooser.setFileFilter(filter);
     }
 
+    private void saveIntoTxt(String text) {
+        try (PrintWriter printWriter = new PrintWriter(DEST_FILENAME)){
+            printWriter.println(text);
+        } catch (FileNotFoundException e) {
+            throw new RuntimeException("File is not found!");
+        }
+    }
+
+    private String readFromTxt() {
+        StringBuilder text = new StringBuilder();
+        try (BufferedReader bufferedReader = new BufferedReader(new FileReader(DEST_FILENAME))) {
+            while (bufferedReader.ready()) {
+                text.append(bufferedReader.readLine());
+                text.append('\n');
+            }
+            return text.toString();
+        } catch (FileNotFoundException e) {
+            throw new RuntimeException(e);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
 
 }
