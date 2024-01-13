@@ -6,6 +6,14 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.stream.Stream;
 
+/*
+The class has written for input lines like:
+"text1 – text2 – text3 – text4"
+for converting that into .csv where's line model is:
+"text3(text1);text4"
+If you would change please refer into the methods in the class
+ */
+
 public class TextFormatter {
     private String finalText = "";
 
