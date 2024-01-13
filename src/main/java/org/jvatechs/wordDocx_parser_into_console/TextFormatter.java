@@ -16,11 +16,6 @@ If you would change please refer into the methods in the class
 
 public class TextFormatter {
     private String finalText = "";
-
-    public static void main(String[] args) {
-        String[] strings = new TextFormatter().lineSplit("Werden – wurde – ist geworden – становиться");
-        System.out.println(Arrays.toString(strings));
-    }
     void CSVCreator(String text) {
         text = text.trim();
         Stream<String> lines = returnLine(text);
