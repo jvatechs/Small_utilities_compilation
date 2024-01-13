@@ -1,17 +1,17 @@
 package org.jvatechs.json_data_parser_from_html;
 
 import com.google.gson.JsonArray;
-import com.google.gson.JsonNull;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import org.jvatechs.json_data_parser_from_html.exception.DataFetchException;
 import org.jvatechs.json_data_parser_from_html.exception.JsonDataNullException;
 import org.jvatechs.json_data_parser_from_html.exception.JsonNullException;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.net.ConnectException;
 import java.net.URI;
 import java.net.http.HttpClient;
 import java.net.http.HttpConnectTimeoutException;
@@ -19,9 +19,6 @@ import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
 import java.nio.channels.UnresolvedAddressException;
 import java.time.Duration;
-import java.util.logging.Level;
-import java.util.logging.LogManager;
-import java.util.logging.Logger;
 
 public class DrawResultParser {
     private static final int MIN_DRAW = 500;
@@ -29,7 +26,7 @@ public class DrawResultParser {
     private static final HttpClient CLIENT = HttpClient.newHttpClient();
     private final static String RESULTS_TXT = "all_draw_results.txt";
     private final static String DRAW_URL = "https://your-example-link.com";
-    private final static Logger LOGGER = Logger.getLogger(DrawResultParser.class.getName());
+    private final static Logger LOGGER = LoggerFactory.getLogger(DrawResultParser.class.getName());
 
 
     public static void main(String[] args) {
@@ -39,7 +36,7 @@ public class DrawResultParser {
         try (FileWriter fileWriter = new FileWriter(RESULTS_TXT); BufferedWriter bufferedWriter = new BufferedWriter(fileWriter)) {
             processDraws(bufferedWriter, progressBar);
         } catch (IOException e) {
-            LOGGER.log(Level.SEVERE, "An error occurred while processing draws.", e);
+            LOGGER.error("An error occurred while processing draws.", e);
         }
     }
 
@@ -55,10 +52,10 @@ public class DrawResultParser {
                 throw new DataFetchException("Error when receiving data for the draw " + drawId + ". Error code: " + response.statusCode());
             }
         } catch (HttpConnectTimeoutException e) {
-            LOGGER.log(Level.SEVERE, "Request timeout for draw: " + drawId);
+            LOGGER.error("Request timeout for draw: " + drawId);
             throw new DataFetchException(drawId);
         } catch (IOException e) {
-            LOGGER.severe("The http address isn't found.");
+            LOGGER.error("The http address isn't found.");
             throw new UnresolvedAddressException();
         } catch (InterruptedException e) {
             Thread.currentThread().interrupt();
@@ -80,9 +77,9 @@ public class DrawResultParser {
         }
 
         if (isSuccessful) {
-            LOGGER.info("\n \u001B[32m +++Ready! Data successfully saved!+++ \u001B[0m");
+            LOGGER.info("\n +++Ready! Data successfully saved!+++");
         } else {
-            LOGGER.severe("\n \u001B[31m ***Data saving process was interrupted due to an error.*** \u001B[0m");
+            LOGGER.error("\n ***Data saving process was interrupted due to an error.*** ");
         }
     }
 
@@ -91,10 +88,10 @@ public class DrawResultParser {
         try {
             winningNumbers = json.getAsJsonObject("data").getAsJsonArray("winningNumbers");
         } catch (NullPointerException e) {
-            LOGGER.log(Level.SEVERE, "JSON FILE is NULL!");
+            LOGGER.error("JSON FILE is NULL!");
             throw new JsonNullException("JSON FILE is NULL!");
         } catch (ClassCastException e) {
-            LOGGER.log(Level.SEVERE, "JSON data is NULL!");
+            LOGGER.error("JSON data is NULL!");
             throw new JsonDataNullException("JSON data is NULL!");
         }
 

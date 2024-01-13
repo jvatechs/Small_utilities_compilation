@@ -1,13 +1,18 @@
-package org.jvatechs.wordDocx_parser_into_console;
+package org.jvatechs.word_docx_to_txt_parser;
 
 import org.apache.poi.xwpf.extractor.XWPFWordExtractor;
 import org.apache.poi.xwpf.usermodel.XWPFDocument;
+import org.jvatechs.text_to_csv_formatter.TextIntoCSVFormatter;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import javax.swing.*;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import java.io.*;
+import java.util.logging.Level;
 
-public class DocxParser {
+public class DocxToTxtParser {
+    private static final Logger LOGGER = LoggerFactory.getLogger("DocxToTxtParser.class");
     private static final String INITIAL_DIRECTORY = "C:/Users/Owner/Downloads";
     private static final String FILTER_DESCRIPTION = "Word Documents (*.docx)";
     private static final String FILTER_EXTENSIONS = "docx";
@@ -18,10 +23,10 @@ public class DocxParser {
 //        String text = new DocxParser().chooseFileAndReturnText();
 //        new DocxParser().saveIntoTxt(text);
 
-        TextFormatter textFormatter = new TextFormatter();
-        String text = new DocxParser().readFromTxt();
-        textFormatter.CSVCreator(text);
-        textFormatter.saveResultIntoFile();
+        TextIntoCSVFormatter textIntoCSVFormatter = new TextIntoCSVFormatter();
+        String text = new DocxToTxtParser().readFromTxt(DEST_FILENAME);
+        textIntoCSVFormatter.createCSVFormattedText(text);
+        textIntoCSVFormatter.saveResultIntoFile();
 
     }
 
@@ -71,13 +76,14 @@ public class DocxParser {
         }
     }
 
-    private String readFromTxt() {
+    public String readFromTxt(String fileName) {
         StringBuilder text = new StringBuilder();
-        try (BufferedReader bufferedReader = new BufferedReader(new FileReader(DEST_FILENAME))) {
+        try (BufferedReader bufferedReader = new BufferedReader(new FileReader(fileName))) {
             while (bufferedReader.ready()) {
                 text.append(bufferedReader.readLine());
                 text.append('\n');
             }
+            LOGGER.info("Successfully read from file...");
             return text.toString();
         } catch (FileNotFoundException e) {
             throw new RuntimeException(e);

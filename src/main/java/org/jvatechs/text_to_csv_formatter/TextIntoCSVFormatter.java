@@ -1,9 +1,12 @@
-package org.jvatechs.wordDocx_parser_into_console;
+package org.jvatechs.text_to_csv_formatter;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.io.FileNotFoundException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
-import java.util.Arrays;
+import java.util.logging.Level;
 import java.util.stream.Stream;
 
 /*
@@ -14,19 +17,23 @@ for converting that into .csv where's line model is:
 If you would change please refer into the methods in the class
  */
 
-public class TextFormatter {
-    private String finalText = "";
-    void CSVCreator(String text) {
+public class TextIntoCSVFormatter {
+    private static final Logger LOGGER = LoggerFactory.getLogger(TextIntoCSVFormatter.class.getName());
+    private String CSVFormattedText = "";
+    public void createCSVFormattedText(String text) {
         text = text.trim();
         Stream<String> lines = returnLine(text);
         lines.map(this::lineSplit).
                 map(this::formateLine).
                 map(this::convertArrayListIntoCSVline).
                 forEach(this::createOneStringWithLines);
+        LOGGER.info("CSVFormattedText successfully created...");
     }
-    void saveResultIntoFile() {
-        try (PrintWriter printWriter = new PrintWriter("finalCSV.csv")) {
-            printWriter.print(finalText);
+    public void saveResultIntoFile() {
+        String filename = "finalCSV.csv";
+        try (PrintWriter printWriter = new PrintWriter(filename)) {
+            printWriter.print(CSVFormattedText);
+            LOGGER.info("CSVFormattedText successfully created...");
         } catch (FileNotFoundException e) {
             throw new RuntimeException(e);
         }
@@ -49,6 +56,6 @@ public class TextFormatter {
         return line.get(0) + ";" + line.get(1);
     }
     private void createOneStringWithLines(String line) {
-        finalText = finalText + '\n' + line;
+        CSVFormattedText = CSVFormattedText + '\n' + line;
     }
 }
