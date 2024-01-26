@@ -1,6 +1,6 @@
 package org.jvatechs;
 
-import org.jvatechs.text_to_csv_formatter.TextIntoCSVFormatter;
+import org.jvatechs.manipulations_with_csv.TextIntoCSVFormatter;
 import org.jvatechs.word_docx_to_txt_parser.DocxToTxtParser;
 
 import java.util.logging.Logger;

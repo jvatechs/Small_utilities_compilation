@@ -1,4 +1,4 @@
-package org.jvatechs.text_to_csv_formatter;
+package org.jvatechs.manipulations_with_csv;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -6,7 +6,6 @@ import org.slf4j.LoggerFactory;
 import java.io.FileNotFoundException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
-import java.util.logging.Level;
 import java.util.stream.Stream;
 
 /*
@@ -24,7 +23,7 @@ public class TextIntoCSVFormatter {
         text = text.trim();
         Stream<String> lines = returnLine(text);
         lines.map(this::lineSplit).
-                map(this::formateLine).
+                map(this::formatLine).
                 map(this::convertArrayListIntoCSVline).
                 forEach(this::createOneStringWithLines);
         LOGGER.info("CSVFormattedText successfully created...");
@@ -45,7 +44,7 @@ public class TextIntoCSVFormatter {
         return line.split("\\s*–\\s*");
     }
 
-    private ArrayList<String> formateLine(String[] line) {
+    private ArrayList<String> formatLine(String[] line) {
         ArrayList<String> formatted = new ArrayList<>();
         formatted.add(line[2] + "(" + line[0] +")");
         formatted.add(line[3]);

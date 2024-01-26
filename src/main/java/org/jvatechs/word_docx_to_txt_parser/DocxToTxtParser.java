@@ -2,14 +2,13 @@ package org.jvatechs.word_docx_to_txt_parser;
 
 import org.apache.poi.xwpf.extractor.XWPFWordExtractor;
 import org.apache.poi.xwpf.usermodel.XWPFDocument;
-import org.jvatechs.text_to_csv_formatter.TextIntoCSVFormatter;
+import org.jvatechs.manipulations_with_csv.TextIntoCSVFormatter;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import javax.swing.*;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import java.io.*;
-import java.util.logging.Level;
 
 public class DocxToTxtParser {
     private static final Logger LOGGER = LoggerFactory.getLogger("DocxToTxtParser.class");

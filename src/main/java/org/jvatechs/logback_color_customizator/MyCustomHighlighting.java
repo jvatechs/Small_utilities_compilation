@@ -6,7 +6,6 @@ import ch.qos.logback.core.pattern.color.ANSIConstants;
 import ch.qos.logback.core.pattern.color.ForegroundCompositeConverterBase;
 
 public class MyCustomHighlighting extends ForegroundCompositeConverterBase<ILoggingEvent> {
-
     @Override
     protected String getForegroundColorCode(ILoggingEvent event) {
         Level level = event.getLevel();
@@ -21,5 +20,4 @@ public class MyCustomHighlighting extends ForegroundCompositeConverterBase<ILogg
                 return ANSIConstants.DEFAULT_FG;
         }
     }
-
 }
