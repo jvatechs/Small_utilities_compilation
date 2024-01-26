@@ -27,6 +27,11 @@ public class GermanArticlesToCSVAdder {
         saveResultIntoFile(readyText, newFileName);
     }
 
+    public static void main(String[] args) {
+        System.out.println(new GermanArticlesToCSVAdder().addArticleBeforeWord("Wand f, -e-"));
+        System.out.println(new GermanArticlesToCSVAdder().addArticleBeforeWord("Verein m, -e-"));
+    }
+
     private void createMapFromCSV() {
         dictionaryMap = new HashMap<>();
         File csvFile = chooseFile();
@@ -49,17 +54,30 @@ public class GermanArticlesToCSVAdder {
     }
 
     private String addArticleBeforeWord(String deutschWord) {
-        if (deutschWord.contains(" f,")) {
-           return "die " + deutschWord;
+        String feminine = "f,";
+        String masculine = "m,";
+        String neutral = "n,";
+
+
+        if (deutschWord.contains(feminine)) {
+            return buildWordWithArticle(deutschWord, feminine, "die ");
         }
-        if (deutschWord.contains(" m,")) {
-            return "der " + deutschWord;
+        if (deutschWord.contains(masculine)) {
+            return buildWordWithArticle(deutschWord, masculine, "der ");
         }
-        if (deutschWord.contains(" n,")) {
-            return "das " + deutschWord;
+        if (deutschWord.contains(neutral)) {
+            return buildWordWithArticle(deutschWord, neutral, "das ");
         }
         return deutschWord;
     }
+
+    private static String buildWordWithArticle(String deutschWord, String feminine, String x) {
+        String word = deutschWord.substring(0, deutschWord.indexOf(feminine));
+        String anotherPieceInBrackets =
+                "(" + deutschWord.substring(deutschWord.indexOf(feminine)) + ")";
+        return x + word + anotherPieceInBrackets;
+    }
+
 
     private File chooseFile() {
         JFileChooser fileChooser = new JFileChooser(INITIAL_DIRECTORY);
