@@ -1,7 +1,7 @@
 package org.jvatechs.manipulations_with_csv;
 
-import javax.swing.*;
-import javax.swing.filechooser.FileNameExtensionFilter;
+import org.jvatechs.manipupulations_with_files.MyFileChooser;
+
 import java.io.*;
 import java.util.HashMap;
 
@@ -15,10 +15,10 @@ import java.util.HashMap;
  */
 
 public class GermanArticlesToCSVAdder {
-    private static final String INITIAL_DIRECTORY = "C:/Users/Owner/Documents";
     private static final String FILTER_DESCRIPTION = "CSV files ONLY (*.csv)";
     private static final String FILTER_EXTENSIONS = "csv";
     private HashMap<String, String> dictionaryMap;
+    private final MyFileChooser myFileChooser = new MyFileChooser(FILTER_DESCRIPTION, FILTER_EXTENSIONS);
 
 
     public void init(String newFileName) {
@@ -34,7 +34,7 @@ public class GermanArticlesToCSVAdder {
 
     private void createMapFromCSV() {
         dictionaryMap = new HashMap<>();
-        File csvFile = chooseFile();
+        File csvFile = myFileChooser.getFile();
         if (csvFile != null) {
             try (BufferedReader bufferedReader = new BufferedReader(new FileReader(csvFile))) {
 
@@ -71,26 +71,11 @@ public class GermanArticlesToCSVAdder {
         return deutschWord;
     }
 
-    private static String buildWordWithArticle(String deutschWord, String feminine, String x) {
-        String word = deutschWord.substring(0, deutschWord.indexOf(feminine));
+    private static String buildWordWithArticle(String deutschWord, String genus, String article) {
+        String word = deutschWord.substring(0, deutschWord.indexOf(genus));
         String anotherPieceInBrackets =
-                "(" + deutschWord.substring(deutschWord.indexOf(feminine)) + ")";
-        return x + word + anotherPieceInBrackets;
-    }
-
-
-    private File chooseFile() {
-        JFileChooser fileChooser = new JFileChooser(INITIAL_DIRECTORY);
-        FileNameExtensionFilter fnef = new FileNameExtensionFilter(FILTER_DESCRIPTION, FILTER_EXTENSIONS);
-        fileChooser.setFileFilter(fnef);
-
-        int result = fileChooser.showOpenDialog(null);
-
-        if (result == JFileChooser.APPROVE_OPTION) {
-            return fileChooser.getSelectedFile();
-        } else {
-            return null;
-        }
+                "(" + deutschWord.substring(deutschWord.indexOf(genus)) + ")";
+        return article + word + anotherPieceInBrackets;
     }
 
     private String createReadyText() {
