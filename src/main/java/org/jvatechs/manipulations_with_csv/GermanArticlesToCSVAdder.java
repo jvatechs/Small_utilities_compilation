@@ -27,10 +27,11 @@ public class GermanArticlesToCSVAdder {
         saveResultIntoFile(readyText, newFileName);
     }
 
-    public static void main(String[] args) {
-        System.out.println(new GermanArticlesToCSVAdder().addArticleBeforeWord("Wand f, -e-"));
-        System.out.println(new GermanArticlesToCSVAdder().addArticleBeforeWord("Verein m, -e-"));
-    }
+    //uncomment for check
+//    public static void main(String[] args) {
+//        System.out.println(new GermanArticlesToCSVAdder().addArticleBeforeWord("Wand f, -e-"));
+//        System.out.println(new GermanArticlesToCSVAdder().addArticleBeforeWord("Verein m, -e-"));
+//    }
 
     private void createMapFromCSV() {
         dictionaryMap = new HashMap<>();

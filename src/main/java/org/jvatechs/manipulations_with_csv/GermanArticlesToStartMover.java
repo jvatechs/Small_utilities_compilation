@@ -21,6 +21,12 @@ public class GermanArticlesToStartMover {
         changeFileWithArticles();
         fileSaver.saveIntoTxt(stringBuilder.toString());
     }
+
+    //uncomment for check
+//    public static void main(String[] args) {
+//        System.out.println(new GermanArticlesToStartMover().moveArticleToStart("Absicht, die, -en;намерение"));
+//        System.out.println(new GermanArticlesToStartMover().moveArticleToStart("Ausdruck, der;выражение"));
+//    }
     private void changeFileWithArticles() {
         File file = new GermanArticlesToStartMover().myFileChooser.chooseFile() ;
         if (file != null) {
