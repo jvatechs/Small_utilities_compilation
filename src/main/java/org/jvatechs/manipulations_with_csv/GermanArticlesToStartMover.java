@@ -47,9 +47,10 @@ public class GermanArticlesToStartMover {
     }
 
     private String moveArticleToStart(String line) {
-        String[] articles = {"die, ", "der, ", "das, ", ", die;", ", der;", ", das;", " die;", " der;", " das;"};
-        String[] startArticles = {"die ", "der ", "das ", "die ", "der ", "das ", "die ", "der ", "das "};
-        String[] replacements = {"", "", "", ";", ";", ";", ";", ";", ";"};
+        String[] articles =
+                {"die, ", "der, ", "das, ", ", die;", ", der;", ", das;", " die;", " der;", " das;", ", der (", ", die (", ", das ("};
+        String[] startArticles = {"die ", "der ", "das ", "die ", "der ", "das ", "die ", "der ", "das ", "der ", "die ", "das "};
+        String[] replacements = {"", "", "", ";", ";", ";", ";", ";", ";", ", (", ", (", ", ("};
 
         for (int i = 0; i < articles.length; i++) {
             if (line.contains(articles[i])) {
