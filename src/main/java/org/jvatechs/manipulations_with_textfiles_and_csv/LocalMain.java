@@ -1,12 +1,11 @@
 package org.jvatechs.manipulations_with_textfiles_and_csv;
 
-import org.jvatechs.manipulations_with_textfiles_and_csv.german_articles.GermanArticlesToStartMover;
-import org.jvatechs.word_docx_to_txt_parser.DocxToTxtParser;
+import org.jvatechs.word_docx_to_txt_parser.TextFromFileReader;
 
 public class LocalMain {
     public static void main(String[] args) {
 //        TextIntoCSVFormatter textIntoCSVFormatter = new TextIntoCSVFormatter();
-//        String text = new DocxToTxtParser().readFromTxt("word-to-txt.txt");
+//        String text = new StringFromFileReader().readFromTxt("word-to-txt.txt");
 //        textIntoCSVFormatter.createCSVFormattedText(text);
 //        textIntoCSVFormatter.saveResultIntoFile();
 
@@ -16,8 +15,8 @@ public class LocalMain {
 //        GermanArticlesToStartMover toStartMover = new GermanArticlesToStartMover();
 //        toStartMover.init();
 
-        DocxToTxtParser docxToTxtParser = new DocxToTxtParser();
-        docxToTxtParser.init();
+        TextIntoCSVFormatter textIntoCSVFormatter = new TextIntoCSVFormatter();
+        textIntoCSVFormatter.init();
 
 
 

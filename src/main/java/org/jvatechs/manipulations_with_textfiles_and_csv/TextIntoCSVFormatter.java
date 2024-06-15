@@ -1,10 +1,11 @@
 package org.jvatechs.manipulations_with_textfiles_and_csv;
 
+import org.jvatechs.loggers.Loggable;
+import org.jvatechs.manipupulations_with_files.TextIntoFileSaver;
+import org.jvatechs.word_docx_to_txt_parser.TextFromFileReader;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.io.FileNotFoundException;
-import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.stream.Stream;
 
@@ -16,9 +17,18 @@ for converting that into .csv where's line model is:
 If you would change please refer into the methods in the class
  */
 
-public class TextIntoCSVFormatter {
-    private static final Logger LOGGER = LoggerFactory.getLogger(TextIntoCSVFormatter.class.getName());
+public class TextIntoCSVFormatter implements Loggable {
     private String CSVFormattedText = "";
+    private static final String SOURCE_FILE = "word-to-txt.txt";
+    private static final String DESTINATION_FILE = "finalCSV.csv";
+
+    public void init() {
+        TextFromFileReader textReader = new TextFromFileReader(SOURCE_FILE);
+        TextIntoFileSaver textIntoFileSaver = new TextIntoFileSaver(DESTINATION_FILE);
+        createCSVFormattedText(textReader.readFromTxt());
+        textIntoFileSaver.saveIntoTxt(CSVFormattedText);
+
+    }
     public void createCSVFormattedText(String text) {
         text = text.trim();
         Stream<String> lines = returnLine(text);
@@ -26,11 +36,9 @@ public class TextIntoCSVFormatter {
                 map(this::formatLine).
                 map(this::convertArrayListIntoCSVline).
                 forEach(this::createOneStringWithLines);
-        LOGGER.info("CSVFormattedText successfully created...");
+        getLogger().info("CSVFormattedText successfully created...");
     }
-    public void saveResultIntoFile(String filename) {
-        new TextSaverIntoTextFile().saveTextToFile(CSVFormattedText, filename);
-    }
+
     private Stream<String> returnLine(String text) {
         return text.lines();
     }
