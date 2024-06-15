@@ -1,6 +1,6 @@
-package org.jvatechs.manipulations_with_csv;
+package org.jvatechs.manipulations_with_textfiles_and_csv.german_articles;
 
-import org.jvatechs.manipupulations_with_files.MyFileChooser;
+import org.jvatechs.manipulations_with_textfiles_and_csv.TextFileLineByLineReader;
 
 import java.io.*;
 import java.util.HashMap;
@@ -18,7 +18,7 @@ public class GermanArticlesToCSVAdder {
     private static final String FILTER_DESCRIPTION = "CSV files ONLY (*.csv)";
     private static final String FILTER_EXTENSIONS = "csv";
     private HashMap<String, String> dictionaryMap;
-    private final MyFileChooser myFileChooser = new MyFileChooser(FILTER_DESCRIPTION, FILTER_EXTENSIONS);
+    private final TextFileLineByLineReader lineReader = new TextFileLineByLineReader(FILTER_DESCRIPTION, FILTER_EXTENSIONS);
 
 
     public void init(String newFileName) {
@@ -27,31 +27,15 @@ public class GermanArticlesToCSVAdder {
         saveResultIntoFile(readyText, newFileName);
     }
 
-    //uncomment for check
-//    public static void main(String[] args) {
-//        System.out.println(new GermanArticlesToCSVAdder().addArticleBeforeWord("Wand f, -e-"));
-//        System.out.println(new GermanArticlesToCSVAdder().addArticleBeforeWord("Verein m, -e-"));
-//    }
-
     private void createMapFromCSV() {
         dictionaryMap = new HashMap<>();
-        File csvFile = myFileChooser.getFile();
-        if (csvFile != null) {
-            try (BufferedReader bufferedReader = new BufferedReader(new FileReader(csvFile))) {
 
-                while (bufferedReader.ready()) {
-                    String line = bufferedReader.readLine();
-
-                    String[] splittedLine = line.split(";");
-                    String deutschWord = splittedLine[0];
-                    dictionaryMap.put(addArticleBeforeWord(deutschWord), splittedLine[1]);
-                }
-            } catch (FileNotFoundException e) {
-                throw new RuntimeException(e);
-            } catch (IOException e) {
-                throw new RuntimeException(e);
-            }
-        }
+        lineReader.processFileWithFunction(line -> {
+            String[] splittedLine = line.split(";");
+            String deutschWord = splittedLine[0];
+            dictionaryMap.put(addArticleBeforeWord(deutschWord), splittedLine[1]);
+            return null;
+        });
     }
 
     private String addArticleBeforeWord(String deutschWord) {

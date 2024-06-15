@@ -1,9 +1,8 @@
-package org.jvatechs.manipulations_with_csv;
+package org.jvatechs.manipulations_with_textfiles_and_csv.german_articles;
 
-import org.jvatechs.manipupulations_with_files.MyFileChooser;
+import org.jvatechs.manipulations_with_textfiles_and_csv.TextFileLineByLineReader;
 import org.jvatechs.manipupulations_with_files.TextIntoFileSaver;
 
-import java.io.*;
 /*
      Here we have CSV file like with lines like: "word in German, die/der/das;translate".
     The "word in German" can contain  ", die;", ", der;", ", das;" markers in Nouns.
@@ -12,8 +11,7 @@ import java.io.*;
     "wort das,..." => "das wort..."
  */
 public class GermanArticlesToStartMover {
-
-    private final MyFileChooser myFileChooser = new MyFileChooser("TXT and CSV files only", "txt", "csv");
+    private final TextFileLineByLineReader lineReader = new TextFileLineByLineReader("TXT and CSV files only", "txt", "csv");
     private final TextIntoFileSaver fileSaver = new TextIntoFileSaver("fromMiddleToStartArticles.csv");
     private final StringBuilder stringBuilder = new StringBuilder();
 
@@ -27,26 +25,17 @@ public class GermanArticlesToStartMover {
 //        System.out.println(new GermanArticlesToStartMover().moveArticleToStart("Absicht, die, -en;намерение"));
 //        System.out.println(new GermanArticlesToStartMover().moveArticleToStart("Ausdruck, der;выражение"));
 //    }
-    private void changeFileWithArticles() {
-        File file = new GermanArticlesToStartMover().myFileChooser.chooseFile() ;
-        if (file != null) {
-            try (BufferedReader bufferedReader = new BufferedReader(new FileReader(file))) {
 
-                while (bufferedReader.ready()) {
-                    String line = bufferedReader.readLine();
-                    line = moveArticleToStart(line);
-                    stringBuilder.append(line);
-                    stringBuilder.append('\n');
-                }
-            } catch (FileNotFoundException e) {
-                throw new RuntimeException(e);
-            } catch (IOException e) {
-                throw new RuntimeException(e);
-            }
-        }
+    private void changeFileWithArticles() {
+        lineReader.processFileWithFunction(line -> {
+            line = moveArticleToStart(line);
+            stringBuilder.append(line);
+            stringBuilder.append('\n');
+            return null;
+        });
     }
 
-    private String moveArticleToStart(String line) {
+        private String moveArticleToStart(String line) {
         String[] articles =
                 {"die, ", "der, ", "das, ", ", die;", ", der;", ", das;", " die;", " der;", " das;", ", der (", ", die (", ", das ("};
         String[] startArticles = {"die ", "der ", "das ", "die ", "der ", "das ", "die ", "der ", "das ", "der ", "die ", "das "};

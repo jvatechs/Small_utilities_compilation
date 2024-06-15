@@ -1,4 +1,4 @@
-package org.jvatechs.manipulations_with_csv;
+package org.jvatechs.manipulations_with_textfiles_and_csv;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -28,14 +28,8 @@ public class TextIntoCSVFormatter {
                 forEach(this::createOneStringWithLines);
         LOGGER.info("CSVFormattedText successfully created...");
     }
-    public void saveResultIntoFile() {
-        String filename = "finalCSV.csv";
-        try (PrintWriter printWriter = new PrintWriter(filename)) {
-            printWriter.print(CSVFormattedText);
-            LOGGER.info("CSVFormattedText successfully created...");
-        } catch (FileNotFoundException e) {
-            throw new RuntimeException(e);
-        }
+    public void saveResultIntoFile(String filename) {
+        new TextSaverIntoTextFile().saveTextToFile(CSVFormattedText, filename);
     }
     private Stream<String> returnLine(String text) {
         return text.lines();

@@ -1,5 +1,6 @@
-package org.jvatechs.manipulations_with_csv;
+package org.jvatechs.manipulations_with_textfiles_and_csv;
 
+import org.jvatechs.manipulations_with_textfiles_and_csv.german_articles.GermanArticlesToStartMover;
 import org.jvatechs.word_docx_to_txt_parser.DocxToTxtParser;
 
 public class LocalMain {
@@ -12,8 +13,13 @@ public class LocalMain {
 //        GermanArticlesToCSVAdder germanArticlesToCsvAdder = new GermanArticlesToCSVAdder();
 //        germanArticlesToCsvAdder.init("translated.csv");
 
-        GermanArticlesToStartMover toStartMover = new GermanArticlesToStartMover();
-        toStartMover.init();
+//        GermanArticlesToStartMover toStartMover = new GermanArticlesToStartMover();
+//        toStartMover.init();
+
+        DocxToTxtParser docxToTxtParser = new DocxToTxtParser();
+        docxToTxtParser.init();
+
+
 
     }
 }
