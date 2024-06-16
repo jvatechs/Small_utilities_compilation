@@ -19,7 +19,6 @@ public class CSVCustomParser {
     public CSVCustomParser() {
         createCSVMap();
         splitMapValuesIntoMapList();
-        System.out.println(Arrays.toString(listMap.entrySet().toArray()));
     }
 
     private void createCSVMap() {

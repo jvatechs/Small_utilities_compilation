@@ -32,7 +32,7 @@ public class TextFileLineByLineReader {
                     lineProcessor.apply(line);
                 }
             } catch (FileNotFoundException e) {
-                throw new RuntimeException(e);
+                throw new RuntimeException("File Not found.");
             } catch (IOException e) {
                 throw new RuntimeException(e);
             }
