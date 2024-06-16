@@ -1,4 +1,4 @@
-package org.jvatechs.logback_color_customizator;
+package org.jvatechs.loggers.logback_color_customizator;
 
 import ch.qos.logback.classic.Level;
 import ch.qos.logback.classic.spi.ILoggingEvent;

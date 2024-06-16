@@ -1,7 +1,7 @@
 package org.jvatechs.manipulations_with_textfiles_and_csv.german_articles;
 
-import org.jvatechs.manipulations_with_textfiles_and_csv.TextFileLineByLineReader;
-import org.jvatechs.manipupulations_with_files.TextIntoFileSaver;
+import org.jvatechs.manipulations_with_textfiles_and_csv.text_readers.TextFileLineByLineReader;
+import org.jvatechs.manipulations_with_textfiles_and_csv.text_savers.TextIntoFileSaver;
 
 /*
      Here we have CSV file like with lines like: "word in German, die/der/das;translate".
@@ -17,7 +17,7 @@ public class GermanArticlesToStartMover {
 
     public void init() {
         changeFileWithArticles();
-        fileSaver.saveIntoTxt(stringBuilder.toString());
+        fileSaver.saveIntoFile(stringBuilder.toString());
     }
 
     //uncomment for check

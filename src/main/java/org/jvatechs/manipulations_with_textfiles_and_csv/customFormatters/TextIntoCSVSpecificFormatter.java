@@ -1,10 +1,8 @@
-package org.jvatechs.manipulations_with_textfiles_and_csv;
+package org.jvatechs.manipulations_with_textfiles_and_csv.customFormatters;
 
 import org.jvatechs.loggers.Loggable;
-import org.jvatechs.manipupulations_with_files.TextIntoFileSaver;
-import org.jvatechs.word_docx_to_txt_parser.TextFromFileReader;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import org.jvatechs.manipulations_with_textfiles_and_csv.text_readers.TextFromFileReader;
+import org.jvatechs.manipulations_with_textfiles_and_csv.text_savers.TextIntoFileSaver;
 
 import java.util.ArrayList;
 import java.util.stream.Stream;
@@ -17,7 +15,7 @@ for converting that into .csv where's line model is:
 If you would change please refer into the methods in the class
  */
 
-public class TextIntoCSVFormatter implements Loggable {
+public class TextIntoCSVSpecificFormatter implements Loggable {
     private String CSVFormattedText = "";
     private static final String SOURCE_FILE = "word-to-txt.txt";
     private static final String DESTINATION_FILE = "finalCSV.csv";
@@ -25,8 +23,8 @@ public class TextIntoCSVFormatter implements Loggable {
     public void init() {
         TextFromFileReader textReader = new TextFromFileReader(SOURCE_FILE);
         TextIntoFileSaver textIntoFileSaver = new TextIntoFileSaver(DESTINATION_FILE);
-        createCSVFormattedText(textReader.readFromTxt());
-        textIntoFileSaver.saveIntoTxt(CSVFormattedText);
+        createCSVFormattedText(textReader.readFromTxtToString());
+        textIntoFileSaver.saveIntoFile(CSVFormattedText);
 
     }
     public void createCSVFormattedText(String text) {

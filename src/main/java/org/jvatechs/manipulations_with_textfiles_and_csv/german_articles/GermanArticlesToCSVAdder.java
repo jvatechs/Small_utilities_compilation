@@ -1,6 +1,6 @@
 package org.jvatechs.manipulations_with_textfiles_and_csv.german_articles;
 
-import org.jvatechs.manipulations_with_textfiles_and_csv.TextFileLineByLineReader;
+import org.jvatechs.manipulations_with_textfiles_and_csv.text_readers.TextFileLineByLineReader;
 
 import java.io.*;
 import java.util.HashMap;
