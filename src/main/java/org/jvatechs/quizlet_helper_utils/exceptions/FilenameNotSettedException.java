@@ -1,4 +1,4 @@
-package org.jvatechs.csv_custom_utils.exceptions;
+package org.jvatechs.quizlet_helper_utils.exceptions;
 
 public class FilenameNotSettedException extends Exception {
     public FilenameNotSettedException() {

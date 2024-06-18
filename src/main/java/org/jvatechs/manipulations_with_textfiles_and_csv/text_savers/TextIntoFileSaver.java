@@ -34,8 +34,9 @@ public class TextIntoFileSaver implements Loggable {
             getLogger().info("Filename didn't set. Please set filename or use constructor with parameter.");
         } else {
             File file = new File(filename);
-            file.getParentFile().mkdirs();
-
+            if (file.getParentFile() != null) {
+                file.getParentFile().mkdirs();
+            }
             try (PrintWriter printWriter = new PrintWriter(file)) {
                 for (String word : words) {
                     printWriter.println(word);
@@ -47,12 +48,33 @@ public class TextIntoFileSaver implements Loggable {
         }
     }
 
+    public void saveListIntoFile(ArrayList<String> list) {
+        if (filename == null) {
+            getLogger().info("Filename didn't set. Please set filename or use constructor with parameter.");
+        } else {
+            File file = new File(filename);
+            if (file.getParentFile() != null) {
+                file.getParentFile().mkdirs();
+            }
+
+            try (PrintWriter printWriter = new PrintWriter(file)) {
+                for (String word : list) {
+                    printWriter.println(word);
+                }
+                getLogger().info("Text from ArrayList successfully saved into " + filename);
+            } catch (FileNotFoundException e) {
+                throw new RuntimeException(e);
+            }
+        }
+    }
     public void saveTwoListsPairedIntoFile(ArrayList<String> original, ArrayList<String> translated) {
         if (filename == null) {
             getLogger().info("Filename didn't set. Please set filename or use constructor with parameter.");
         } else {
             File file = new File(filename);
-            file.getParentFile().mkdirs();
+            if (file.getParentFile() != null) {
+                file.getParentFile().mkdirs();
+            }
 
             try (PrintWriter printWriter = new PrintWriter(file)) {
                 String delimiter = ";";
@@ -66,6 +88,7 @@ public class TextIntoFileSaver implements Loggable {
         }
     }
 
+    //for constructor without parameters
     public void setFilename(String filename) {
         this.filename = filename;
     }

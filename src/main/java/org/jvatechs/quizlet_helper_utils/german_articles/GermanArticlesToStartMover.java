@@ -1,4 +1,4 @@
-package org.jvatechs.manipulations_with_textfiles_and_csv.german_articles;
+package org.jvatechs.quizlet_helper_utils.german_articles;
 
 import org.jvatechs.manipulations_with_textfiles_and_csv.text_readers.TextFileLineByLineReader;
 import org.jvatechs.manipulations_with_textfiles_and_csv.text_savers.TextIntoFileSaver;

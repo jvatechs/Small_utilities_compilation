@@ -1,6 +1,4 @@
-package org.jvatechs.csv_custom_utils;
-
-import org.jvatechs.manipulations_with_textfiles_and_csv.text_savers.TextIntoFileSaver;
+package org.jvatechs.quizlet_helper_utils;
 
 public class LocalMain {
     public static void main(String[] args) {
@@ -14,8 +12,14 @@ public class LocalMain {
 //        }
 
 
-        TranslatedWithSourceFileIntoCSVMerger translatedCSV
-                = new TranslatedWithSourceFileIntoCSVMerger();
-        translatedCSV.init();
+//        TranslatedWithSourceFileIntoCSVMerger translatedCSV
+//                = new TranslatedWithSourceFileIntoCSVMerger();
+//        translatedCSV.init();
+
+
+//        csvCustomParser.saveStringBuilderIntoFile();
+
+        CSVCustomSplitter csvCustomSplitter = new CSVCustomSplitter();
+        csvCustomSplitter.init();
     }
 }

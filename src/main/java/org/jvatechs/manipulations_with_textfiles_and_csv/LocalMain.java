@@ -1,8 +1,5 @@
 package org.jvatechs.manipulations_with_textfiles_and_csv;
 
-import org.jvatechs.csv_custom_utils.CSVCustomParser;
-import org.jvatechs.manipulations_with_textfiles_and_csv.text_savers.TextIntoFileSaver;
-
 public class LocalMain {
     public static void main(String[] args) {
 //        TextIntoCSVFormatter textIntoCSVFormatter = new TextIntoCSVFormatter();
