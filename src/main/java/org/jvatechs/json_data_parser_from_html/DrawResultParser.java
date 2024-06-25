@@ -4,9 +4,9 @@ import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
-import org.jvatechs.json_data_parser_from_html.exception.DataFetchException;
-import org.jvatechs.json_data_parser_from_html.exception.JsonDataNullException;
-import org.jvatechs.json_data_parser_from_html.exception.JsonNullException;
+import org.jvatechs.exceptions.DataFetchException;
+import org.jvatechs.exceptions.JsonDataNullException;
+import org.jvatechs.exceptions.JsonNullException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

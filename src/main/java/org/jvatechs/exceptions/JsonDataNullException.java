@@ -1,4 +1,4 @@
-package org.jvatechs.json_data_parser_from_html.exception;
+package org.jvatechs.exceptions;
 
 public class JsonDataNullException extends ClassCastException {
     public JsonDataNullException(String message) {

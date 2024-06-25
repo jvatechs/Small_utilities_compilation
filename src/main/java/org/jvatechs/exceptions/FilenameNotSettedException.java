@@ -1,4 +1,4 @@
-package org.jvatechs.quizlet_helper_utils.exceptions;
+package org.jvatechs.exceptions;
 
 public class FilenameNotSettedException extends Exception {
     public FilenameNotSettedException() {

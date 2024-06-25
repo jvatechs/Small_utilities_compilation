@@ -1,4 +1,6 @@
-package org.jvatechs.quizlet_helper_utils;
+package org.jvatechs.quizlet_helper_utils.csv_custom_utils;
+
+import org.jvatechs.quizlet_helper_utils.csv_custom_utils.CSVCustomSplitter;
 
 public class LocalMain {
     public static void main(String[] args) {

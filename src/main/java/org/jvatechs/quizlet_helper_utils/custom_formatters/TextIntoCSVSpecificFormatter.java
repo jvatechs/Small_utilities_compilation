@@ -1,4 +1,4 @@
-package org.jvatechs.quizlet_helper_utils.customFormatters;
+package org.jvatechs.quizlet_helper_utils.custom_formatters;
 
 import org.jvatechs.loggers.Loggable;
 import org.jvatechs.manipulations_with_textfiles_and_csv.text_readers.TextFromFileReader;
