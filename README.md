@@ -48,8 +48,10 @@ cd Small_utilities_compilation
 
 ### Build with Maven
 
-`mvn clean install
-`
+```
+mvn clean install
+```
+
 ### Run inside IntelliJ IDEA
 
 1.  Open the project in **IntelliJ IDEA**.
