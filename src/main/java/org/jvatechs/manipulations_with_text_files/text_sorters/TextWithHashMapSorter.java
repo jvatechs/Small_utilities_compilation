@@ -1,7 +1,7 @@
-package org.jvatechs.manipulations_with_textfiles_and_csv.text_sorters;
+package org.jvatechs.manipulations_with_text_files.text_sorters;
 
-import org.jvatechs.manipulations_with_textfiles_and_csv.text_readers.TextFileLineByLineReader;
-import org.jvatechs.manipulations_with_textfiles_and_csv.text_savers.TextIntoFileSaver;
+import org.jvatechs.manipulations_with_text_files.text_readers.TextFileLineByLineReader;
+import org.jvatechs.manipulations_with_text_files.text_savers.TextIntoFileSaver;
 
 import java.util.HashMap;
 

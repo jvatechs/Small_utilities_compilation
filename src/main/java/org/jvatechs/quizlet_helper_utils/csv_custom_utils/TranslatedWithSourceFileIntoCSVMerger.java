@@ -1,7 +1,7 @@
 package org.jvatechs.quizlet_helper_utils.csv_custom_utils;
 
-import org.jvatechs.manipulations_with_textfiles_and_csv.text_readers.TextFromFileReader;
-import org.jvatechs.manipulations_with_textfiles_and_csv.text_savers.TextIntoFileSaver;
+import org.jvatechs.manipulations_with_text_files.text_readers.TextFromFileReader;
+import org.jvatechs.manipulations_with_text_files.text_savers.TextIntoFileSaver;
 
 import java.util.ArrayList;
 /**

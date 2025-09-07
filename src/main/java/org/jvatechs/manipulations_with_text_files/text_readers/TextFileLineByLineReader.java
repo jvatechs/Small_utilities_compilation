@@ -1,10 +1,9 @@
-package org.jvatechs.manipulations_with_textfiles_and_csv.text_readers;
+package org.jvatechs.manipulations_with_text_files.text_readers;
 
 import org.jvatechs.manipulations_with_common_files.MyFileChooser;
 
 import java.io.*;
 import java.util.function.Consumer;
-import java.util.function.Function;
 
 public class TextFileLineByLineReader {
     private final MyFileChooser myFileChooser;

@@ -1,7 +1,7 @@
 package org.jvatechs.quizlet_helper_utils.german_articles;
 
-import org.jvatechs.manipulations_with_textfiles_and_csv.text_readers.TextFileLineByLineReader;
-import org.jvatechs.manipulations_with_textfiles_and_csv.text_savers.TextIntoFileSaver;
+import org.jvatechs.manipulations_with_text_files.text_readers.TextFileLineByLineReader;
+import org.jvatechs.manipulations_with_text_files.text_savers.TextIntoFileSaver;
 
 /*
      Here we have CSV file like with lines like: "word in German, die/der/das;translate".

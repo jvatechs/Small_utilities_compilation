@@ -1,4 +1,4 @@
-package org.jvatechs.manipulations_with_textfiles_and_csv.text_readers;
+package org.jvatechs.manipulations_with_text_files.text_readers;
 
 import org.jvatechs.loggers.Loggable;
 

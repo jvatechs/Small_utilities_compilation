@@ -1,6 +1,6 @@
 package org.jvatechs.quizlet_helper_utils.german_articles;
 
-import org.jvatechs.manipulations_with_textfiles_and_csv.text_readers.TextFileLineByLineReader;
+import org.jvatechs.manipulations_with_text_files.text_readers.TextFileLineByLineReader;
 
 import java.io.*;
 import java.util.HashMap;

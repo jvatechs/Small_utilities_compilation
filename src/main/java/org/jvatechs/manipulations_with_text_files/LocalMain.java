@@ -1,6 +1,6 @@
-package org.jvatechs.manipulations_with_textfiles_and_csv;
+package org.jvatechs.manipulations_with_text_files;
 
-import org.jvatechs.manipulations_with_textfiles_and_csv.text_sorters.TextWithHashMapSorter;
+import org.jvatechs.manipulations_with_text_files.text_sorters.TextWithHashMapSorter;
 
 public class LocalMain {
     public static void main(String[] args) {
