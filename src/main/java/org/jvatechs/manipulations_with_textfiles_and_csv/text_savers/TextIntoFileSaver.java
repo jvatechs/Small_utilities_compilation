@@ -9,6 +9,8 @@ import java.util.ArrayList;
 
 public class TextIntoFileSaver implements Loggable {
     private String filename;
+    private static final String LOG_ERROR_MESSAGE = "Please set filename via \"setFilename(String filename)\" method" +
+            " or use constructor with parameter.";
 
     public TextIntoFileSaver() {
     }
@@ -19,7 +21,7 @@ public class TextIntoFileSaver implements Loggable {
 
     public void saveIntoFile(String text) {
         if (filename == null) {
-            getLogger().info("Filename didn't set. Please set filename or use constructor with parameter.");
+            printLogErrorMessage();
         }
         try (PrintWriter printWriter = new PrintWriter(filename)) {
             printWriter.println(text);
@@ -31,7 +33,7 @@ public class TextIntoFileSaver implements Loggable {
 
     public void saveArrayStringIntoFile(String[] words) {
         if (filename == null) {
-            getLogger().info("Filename didn't set. Please set filename or use constructor with parameter.");
+            printLogErrorMessage();
         } else {
             File file = new File(filename);
             if (file.getParentFile() != null) {
@@ -50,7 +52,7 @@ public class TextIntoFileSaver implements Loggable {
 
     public void saveListIntoFile(ArrayList<String> list) {
         if (filename == null) {
-            getLogger().info("Filename didn't set. Please set filename or use constructor with parameter.");
+            printLogErrorMessage();
         } else {
             File file = new File(filename);
             if (file.getParentFile() != null) {
@@ -69,12 +71,13 @@ public class TextIntoFileSaver implements Loggable {
     }
     public void saveTwoListsPairedIntoFile(ArrayList<String> original, ArrayList<String> translated) {
         if (filename == null) {
-            getLogger().info("Filename didn't set. Please set filename or use constructor with parameter.");
+            printLogErrorMessage();
         } else {
             File file = new File(filename);
             if (file.getParentFile() != null) {
                 file.getParentFile().mkdirs();
             }
+
 
             try (PrintWriter printWriter = new PrintWriter(file)) {
                 String delimiter = ";";
@@ -92,4 +95,11 @@ public class TextIntoFileSaver implements Loggable {
     public void setFilename(String filename) {
         this.filename = filename;
     }
+
+    private void printLogErrorMessage() {
+        getLogger().error(LOG_ERROR_MESSAGE);
+        throw new NullPointerException("No actual file's destination path set!");
+    }
+
 }
+
