@@ -27,11 +27,10 @@ public class GermanArticlesToStartMover {
 //    }
 
     private void changeFileWithArticles() {
-        lineReader.processFileWithFunction(line -> {
+        lineReader.processFileWithConsumer(line -> {
             line = moveArticleToStart(line);
             stringBuilder.append(line);
             stringBuilder.append('\n');
-            return null;
         });
     }
 

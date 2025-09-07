@@ -31,6 +31,7 @@ public class MyFileChooser {
         } else {
             return null;
         }
+
     }
 
     public void setDialogTitle(String dialogTitle) {

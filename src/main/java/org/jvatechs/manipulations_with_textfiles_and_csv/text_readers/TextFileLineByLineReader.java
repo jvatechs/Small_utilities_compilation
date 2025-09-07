@@ -3,6 +3,7 @@ package org.jvatechs.manipulations_with_textfiles_and_csv.text_readers;
 import org.jvatechs.manipulations_with_common_files.MyFileChooser;
 
 import java.io.*;
+import java.util.function.Consumer;
 import java.util.function.Function;
 
 public class TextFileLineByLineReader {
@@ -17,7 +18,7 @@ public class TextFileLineByLineReader {
     }
 
     //reads line by line with your function parameter
-    public void processFileWithFunction(Function<String, Void> lineProcessor) {
+    public void processFileWithConsumer(Consumer<String> lineProcessor) {
         File file;
         if (filename == null) {
             file = myFileChooser.chooseFile();
@@ -25,17 +26,20 @@ public class TextFileLineByLineReader {
             file = new File(filename);
         }
 
-        if (file != null) {
-            try (BufferedReader bufferedReader = new BufferedReader(new FileReader(file))) {
-                while (bufferedReader.ready()) {
-                    String line = bufferedReader.readLine();
-                    lineProcessor.apply(line);
-                }
-            } catch (FileNotFoundException e) {
-                throw new RuntimeException("File Not found.");
-            } catch (IOException e) {
-                throw new RuntimeException(e);
+        if (file == null) {
+            System.out.println("No file selected.");
+            return;
+        }
+
+        try (BufferedReader bufferedReader = new BufferedReader(new FileReader(file))) {
+            String line;
+            while ((line = bufferedReader.readLine()) != null) {
+                lineProcessor.accept(line);
             }
+        } catch (FileNotFoundException e) {
+            throw new RuntimeException("File Not found.", e);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
         }
     }
 

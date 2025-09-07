@@ -19,10 +19,9 @@ public class TextFromFileReader implements Loggable {
     public String readFromTxtToString() {
         StringBuilder text = new StringBuilder();
         if (sourceFile != null) lineReader.setFilename(sourceFile);
-        lineReader.processFileWithFunction(line -> {
+        lineReader.processFileWithConsumer(line -> {
             text.append(line);
             text.append('\n');
-            return null;
         });
         getLogger().info("Successfully read from file...");
         return text.toString();
@@ -31,10 +30,7 @@ public class TextFromFileReader implements Loggable {
     public ArrayList<String> readFromTxtToArrayList() {
         ArrayList<String> wordList = new ArrayList<>();
         if (sourceFile != null) lineReader.setFilename(sourceFile);
-        lineReader.processFileWithFunction(line -> {
-            wordList.add(line);
-            return null;
-        });
+        lineReader.processFileWithConsumer(wordList::add);
         return wordList;
     }
 

@@ -27,12 +27,11 @@ public class CSVCustomSplitter {
     private void createCsvMap() {
 //        lineReader.setFilename("input.csv");
 
-        lineReader.processFileWithFunction(line -> {
+        lineReader.processFileWithConsumer(line -> {
             String[] columns = line.split(";");
             String partNumber = columns[2].trim();  // Номер части
             String pairOfWords = columns[0] + ";" + columns[1];
             partsMap.computeIfAbsent(partNumber, k -> new ArrayList<>()).add(pairOfWords);
-            return null;
         });
     }
 

@@ -30,11 +30,10 @@ public class GermanArticlesToCSVAdder {
     private void createMapFromCSV() {
         dictionaryMap = new HashMap<>();
 
-        lineReader.processFileWithFunction(line -> {
+        lineReader.processFileWithConsumer(line -> {
             String[] splittedLine = line.split(";");
             String deutschWord = splittedLine[0];
             dictionaryMap.put(addArticleBeforeWord(deutschWord), splittedLine[1]);
-            return null;
         });
     }
 

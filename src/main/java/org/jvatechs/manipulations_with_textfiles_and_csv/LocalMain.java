@@ -1,6 +1,6 @@
 package org.jvatechs.manipulations_with_textfiles_and_csv;
 
-import org.jvatechs.quizlet_helper_utils.custom_formatters.TextIntoCSVSpecificFormatter;
+import org.jvatechs.manipulations_with_textfiles_and_csv.text_sorters.TextWithHashMapSorter;
 
 public class LocalMain {
     public static void main(String[] args) {
@@ -15,8 +15,10 @@ public class LocalMain {
 //        GermanArticlesToStartMover toStartMover = new GermanArticlesToStartMover();
 //        toStartMover.init();
 
-        TextIntoCSVSpecificFormatter textIntoCSVSpecificFormatter = new TextIntoCSVSpecificFormatter();
-        textIntoCSVSpecificFormatter.init();
+//        TextIntoCSVSpecificFormatter textIntoCSVSpecificFormatter = new TextIntoCSVSpecificFormatter();
+//        textIntoCSVSpecificFormatter.init();
 
+        TextWithHashMapSorter textWithHashMapSorter = new TextWithHashMapSorter();
+        textWithHashMapSorter.saveSortedHashMapIntoTextFile();
     }
 }

@@ -4,7 +4,6 @@ import org.jvatechs.manipulations_with_textfiles_and_csv.text_readers.TextFileLi
 import org.jvatechs.manipulations_with_textfiles_and_csv.text_savers.TextIntoFileSaver;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -24,12 +23,11 @@ public class CSVCustomParser {
     }
 
     public void createCSVMap() {
-        lineReader.processFileWithFunction(line -> {
+        lineReader.processFileWithConsumer(line -> {
             String[] splitLine = line.split(";");
             csvMap.put(splitLine[0], splitLine[1]);
             stringBuilder.append(splitLine[0]);
             stringBuilder.append('\n');
-            return null;
         });
     }
 
