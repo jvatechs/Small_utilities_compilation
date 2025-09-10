@@ -1,6 +1,6 @@
 <configuration>
     <!-- custom coloring conversion -->
-    <conversionRule conversionWord="myCustomHighlighting" converterClass="org.jvatechs.loggers.logback_color_customizator.MyCustomHighlighting" />
+    <conversionRule conversionWord="myCustomHighlighting" class="org.jvatechs.loggers.logback_color_customizator.MyCustomHighlighter" />
 
 
     <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
